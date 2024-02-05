@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up page</title>
+    <style>
+        body{
+            
+            background-image: url(./Images/bike\ bg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-blend-mode:difference;
+            color: blue;
+            font-size: large;
+            font-weight: 600;
+        }
+        h1{
+            text-align:center;
+            color: black;
+        }
+        h2{
+            text-align: center;
+        }
+        .main{
+            border: 1px black solid;
+            width: 500px;
+            margin-left: 500px;
+            margin-top: 100px;
+            
+        }
+        label{
+            margin-left: 150px;
+            margin-bottom: 10px;
+        }
+        input{
+            margin-left: 150px;
+        }
+        #error{
+            margin-left: 200px;
+        }
+    </style>
+    <script>
+        function signup_valid(){
+            var phone=document.getElementById("phone_no").value
+            var flag_phone=false
+            if((6000000000<=phone)&&(phone<=9999999999))
+            {
+                flag_phone=true
+            }
+
+            var email=document.getElementById("e-mail").value
+            var flag_email=false
+            for(var i=0;i<email.length;i++)
+            {
+                if(email[i]=='@')
+                {
+                    flag_email=true
+                }
+            }
+
+            var Password=document.getElementById("Password").value
+            var flag_password=false
+            var upper=0
+            var lower=0
+            var Num=0
+            var special=0
+            for(var i=0;i<Password.length;i++){
+                if(('A'<=Password[i])&&(Password[i]<='Z')){
+                    upper++
+                }else if(('a'<=Password[i])&&(Password[i]<='z')){
+                    lower++
+                }else if(('0'<=Password[i])&&(Password[i]<='9')){
+                    Num++
+                }else{
+                    special++
+                }
+            }
+            if((upper>=1)&&(lower>=1)&&(Num>=1)&&(special>=1)&&(Password.length>=8)&&(Password.length<=12)){
+                flag_password=true
+            }
+
+            var confirm=document.getElementById("Confirm_Password").value 
+            var flag_confirm=false
+            if(Password==confirm){
+                flag_confirm=true
+            }
+
+            if((flag_phone==true)&&(flag_email==true)&&(flag_password==true)&&(flag_confirm==true)){
+                window.location.href="./Signup OTP.html"
+            }
+            else{
+                    document.getElementById("error").innerHTML="Invalid Details"
+                    document.getElementById("error").style.color="red"
+            }
+        }
+    </script>
+</head>
+
+<body>
+        <h1>Prakash Pre-Owned Bikes</h1>
+        <br>
+        <div class="main">
+    <h2>SIGNUP</h2>
+    <form action="">
+    <label>FIRST NAME</label><br><input type="text"> 
+    <br>
+    <label>LAST NAME</label><br><input type="text"> 
+    <br>
+    <label>MOBILE NUMBER</label><br><input type="number"  id="phone_no">
+    <br>
+    <label>E-MAIL NAME</label><br><input type="text" id="e-mail">
+    <br>
+    <label>PASSWORD</label><br><input type="password" id="Password">
+    <br>
+    <label>CONFIRM PASSWORD</label><br><input type="password" id="Confirm_Password">
+    <br>
+    <input type="button" onclick="signup_valid()" value="SIGNUP">
+    <p id="error"></p>
+    </form>
+    </div>
+</body>
+</html>
